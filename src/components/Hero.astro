@@ -1,0 +1,42 @@
+---
+import GitHub from "./icons/GitHub.astro"
+import LinkedInIcon from "./icons/LinkedIn.astro"
+import MailIcon from "./icons/Mail.astro"
+import SocialPill from "./SocialPill.astro"
+import Document from "./icons/Document.astro"
+---
+
+<div class="max-w-2xl mx-auto flex flex-col items-center text-center p-8">
+  <img
+    class="rounded-full shadow-2xl w-32 h-32 transition-transform duration-300 hover:scale-105"
+    src="/me.png"
+    alt="Jeferson Image"
+  />
+
+  <h1 class="mt-6 text-4xl sm:text-5xl font-extrabold tracking-tight text-gray-800 dark:text-white">
+    Jeferson Rolón Ochoa
+  </h1>
+
+  <p class="mt-4 text-xl text-gray-700 dark:text-gray-300 [&>strong]:font-semibold [&>strong]:text-yellow-500 dark:[&>strong]:text-yellow-200">
+   <strong>Ingeniero Informático – Desarrollador web full stack </strong> con +2 años de experiencia.
+  </p>
+
+  <nav class="flex flex-wrap justify-center gap-4 mt-8">
+    <SocialPill href="mailto:jeferson.rolon15@gmail.com">
+      <MailIcon class="size-4" />
+      Contáctame
+    </SocialPill>
+    <SocialPill href="https://www.linkedin.com/in/jeferson-stiven-rolon-ochoa/">
+      <LinkedInIcon class="size-4" />
+      LinkedIn
+    </SocialPill>
+    <SocialPill href="https://drive.google.com/file/d/1GwUB-ozEcSyqKBe2Pyqfq50kWG5O18J3/view?usp=sharing">
+      <Document class="size-4" />
+      Ver CV
+    </SocialPill>
+    <SocialPill href="https://github.com/jefer15">
+      <GitHub class="size-4" />
+      GitHub
+    </SocialPill>
+  </nav>
+</div>
