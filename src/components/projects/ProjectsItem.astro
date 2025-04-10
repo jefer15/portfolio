@@ -24,7 +24,7 @@ const { image, title, description, tags, link, githubFront, githubBack } =
     {title}
   </h3>
   <div class="flex flex-wrap mt-2">
-    <ul class="flex flex-row mb-2 gap-x-2">
+    <ul class="flex flex-wrap mb-2 gap-2">
       {
         tags.map((tag: { name: string; class: string; icon: any }) => (
           <li>
@@ -40,7 +40,7 @@ const { image, title, description, tags, link, githubFront, githubBack } =
     </ul>
 
     <div class="mt-2 text-gray-700 dark:text-gray-400">{description}</div>
-    <footer class="flex items-end justify-start mt-4 gap-x-4">
+    <footer class="flex flex-wrap items-end justify-start mt-4 gap-4">
       {
         githubFront && (
           <LinkButton href={githubFront}>
