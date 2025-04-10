@@ -11,7 +11,6 @@ const navItems = [
 ---
 
 <header class="fixed top-0 z-10 w-full flex items-center justify-center mt-2">
-  <!-- Desktop nav centrado (solo para pantallas medianas y grandes) -->
   <nav
     id="desktop-nav"
     class="hidden md:flex px-3 text-sm font-medium rounded-full text-gray-600 dark:text-gray-200 justify-center items-center"
@@ -27,10 +26,9 @@ const navItems = [
     ))}
   </nav>
 
-  <!-- Botón hamburguesa (solo móvil) -->
   <button
     id="menu-btn"
-    class="md:hidden absolute right-4 p-2 bg-white/50 backdrop-blur-lg rounded-full focus:outline-none dark:bg-gray-800/50"
+    class="md:hidden absolute mt-12 right-4 p-2 bg-white/50 backdrop-blur-lg rounded-full focus:outline-none dark:bg-gray-800/50"
     aria-label="Toggle menu"
   >
     <svg class="w-6 h-6 text-gray-700 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -41,10 +39,9 @@ const navItems = [
     </svg>
   </button>
 
-  <!-- Mobile dropdown (oculto por defecto) -->
   <nav
     id="mobile-nav"
-    class="hidden absolute top-full right-4 mt-2 bg-white/50 backdrop-blur-lg dark:bg-gray-800/50 rounded-lg overflow-hidden shadow-lg"
+    class="hidden absolute mt-12 top-full right-4 bg-white/50 backdrop-blur-lg dark:bg-gray-800/50 rounded-lg overflow-hidden shadow-lg"
   >
     {navItems.map((link) => (
       <a
@@ -60,25 +57,24 @@ const navItems = [
 
 <script is:inline type="module">
   window.addEventListener('DOMContentLoaded', () => {
-    // Funcionalidad del menú hamburguesa
     const btn = document.getElementById('menu-btn');
     const mobileNav = document.getElementById('mobile-nav');
-    if (btn && mobileNav) {
-      btn.addEventListener('click', () => {
-        if (mobileNav.classList.contains('hidden')) {
-          // Abrir menú
-          mobileNav.classList.remove('hidden');
-          mobileNav.classList.add('flex', 'flex-col');
-        } else {
-          // Cerrar menú
-          mobileNav.classList.add('hidden');
-          mobileNav.classList.remove('flex', 'flex-col');
-        }
-      });
-    }
+    btn.addEventListener('click', (event) => {
+      event.stopPropagation();
+      mobileNav.classList.toggle('hidden');
+    });
+
+    document.addEventListener('click', (event) => {
+      const isClickInsideMenu = mobileNav.contains(event.target);
+      const isClickOnButton = btn.contains(event.target);
+
+      if (!isClickInsideMenu && !isClickOnButton && !mobileNav.classList.contains('hidden')) {
+        mobileNav.classList.add('hidden');
+      }
+    });
 
     const sections = document.querySelectorAll("section")
-    const navItems = document.querySelectorAll("header nav a")
+    const navItems = document.querySelectorAll("nav a")
 
     const callback = (entries) => {
       entries.forEach((entry) => {
@@ -97,14 +93,13 @@ const navItems = [
     const observer = new IntersectionObserver(callback, {
       root: null,
       rootMargin: "0px",
-      threshold: 0.3,
+      threshold: 0.5,
     })
 
     sections.forEach((section) => {
       observer.observe(section)
     })
 
-    // Cleanup function
     document.onvisibilitychange = () => {
       if (document.visibilityState === "hidden") {
         observer.disconnect()
@@ -118,30 +113,29 @@ const navItems = [
 </script>
 
 <style>
-  /* Estilo para el nav de escritorio */
   #desktop-nav {
     animation: nav-shadown 1s linear both;
     animation-timeline: scroll();
     animation-range: 0 100px;
-    background-color: rgba(255, 255, 255, 0.5); /* bg-white/50 */
+    background-color: rgba(255, 255, 255, 0.5); 
   }
   
   @media (prefers-color-scheme: dark) {
     #desktop-nav {
-      background-color: rgba(31, 41, 55, 0.9); /* gray-800/90 */
+      background-color: rgba(31, 41, 55, 0.9);
     }
   }
   
   @keyframes nav-shadown {
     0% {
-      background-color: rgba(31, 41, 55, 0); /* dark:bg-gray-800/0 */
+      background-color: rgba(31, 41, 55, 0); 
     }
     to {
       box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-                  0 4px 6px -4px rgba(0, 0, 0, 0.1); /* shadow-lg */
-      border-width: 1px; /* ring-1 */
-      backdrop-filter: blur(8px); /* backdrop-blur */
-      border-color: rgba(255, 255, 255, 0.1); /* ring-white/10 */
+      0 4px 6px -4px rgba(0, 0, 0, 0.1);
+      border-width: 1px;
+      backdrop-filter: blur(8px); 
+      border-color: rgba(255, 255, 255, 0.1); 
     }
   }
 </style>
