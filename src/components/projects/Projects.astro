@@ -15,6 +15,7 @@ import DotNetIcon from "../icons/Dotnet.astro"
 import PhpIcon from "../icons/Php.astro"
 import JavaScriptIcon from "../icons/JavaScript.astro"
 import TypeScriptIcon from "../icons/TypeScript.astro"
+import ReactIcon from "../icons/React.astro"
 
 const TAGS = {
   HTML: {
@@ -79,13 +80,18 @@ const TAGS = {
   },
   JAVASCRIPT: {
     name: "JavaScript",
-    class: "bg-[#f7df1e] text-black",
+    class: "bg-[#f7df1e] text-white",
     icon: JavaScriptIcon,
   },
   TYPESCRIPT: {
     name: "TypeScript",
     class: "bg-[#3178c6] text-white",
     icon: TypeScriptIcon,
+  },
+  REACT: {
+    name: "React",
+    class: "bg-[#264de4] text-white",
+    icon: ReactIcon,
   },
 };
 
@@ -101,14 +107,12 @@ const PROJECTS = [
     tags: [TAGS.HTML, TAGS.TAILWIND, TAGS.ANGULAR, TAGS.DOTNET]
   },
   {
-    title: "Aplicación de gestión de tareas",
+    title: "ChatGPT Web Assistant",
     description:
-      "Aplicación de gestión de tareas. Permite crear, editar y eliminar tareas. Desarrollada con .Net, Angular, Tailwind CSS y Material IU.",
-    link: "https://jefer15.github.io/task_front/",
-    githubFront: "https://github.com/jefer15/task_front.git",
-    githubBack: "https://github.com/jefer15/task_back.git",
-    image: "/projects/task.png",
-    tags: [TAGS.HTML, TAGS.TAILWIND, TAGS.ANGULAR, TAGS.DOTNET]
+      "Aplicación web que permite a los usuarios interactuar con un chatbot impulsado por la API de OpenAI (ChatGPT). El asistente responde de manera natural y amigable, simulando una conversación fluida.",
+    githubFront: "https://github.com/jefer15/chatbot.git",
+    image: "/projects/chatbot.png",
+    tags: [TAGS.HTML, TAGS.CSS, TAGS.REACT]
   },
 ];
 ---
